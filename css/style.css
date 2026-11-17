@@ -1,0 +1,1635 @@
+/* ==========================================================================
+   Pear Company / PearPhone — Estilo Fiel Apple.com (Fevereiro de 2011)
+   ========================================================================== */
+
+:root {
+  --page-width: 980px;
+  --font-sans: "Lucida Grande", "Lucida Sans Unicode", "Segoe UI", Arial, Helvetica, sans-serif;
+  --font-display: "Myriad Pro", "Helvetica Neue", "Liberation Sans", "Segoe UI", Arial, sans-serif;
+  --apple-blue: #0088cc;
+  --apple-blue-dark: #0066a1;
+  --text-main: #333333;
+  --text-muted: #666666;
+  --text-light: #888888;
+  --border-subtle: #dcdcdc;
+  --border-store: #cfcfcf;
+  --surface-page: #ffffff;
+  --surface-gray: #f5f5f5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--apple-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.page-container {
+  max-width: var(--page-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 1020px) {
+  .page-container {
+    padding: 0;
+  }
+}
+
+/* ==========================================================================
+   1. Global Navigation Bar — Réplica exata da barra glossy Apple 2011
+   ========================================================================== */
+
+#top-wrap {
+  padding-top: 18px;
+  background: #ffffff;
+}
+
+#globalheader {
+  max-width: var(--page-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 1020px) {
+  #globalheader {
+    padding: 0;
+  }
+}
+
+.globalnav-shell {
+  position: relative;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  background: linear-gradient(
+    to bottom,
+    #8c8c8c 0%,
+    #707070 49%,
+    #5b5b5b 50%,
+    #737373 100%
+  );
+  border: 1px solid #4c4c4c;
+}
+
+#globalnav {
+  display: flex;
+  align-items: stretch;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 36px;
+}
+
+.gn-item {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  border-right: 1px solid #4f4f4f;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.gn-item:first-child {
+  border-left: none;
+  flex: 0 0 82px;
+  border-radius: 3px 0 0 3px;
+}
+
+.gn-item:last-child {
+  border-right: none;
+  flex: 0 0 144px;
+  border-radius: 0 3px 3px 0;
+}
+
+.gn-item > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 8px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.55);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.gn-item:not(.gn-search) > a:hover {
+  background: linear-gradient(
+    to bottom,
+    #666666 0%,
+    #4c4c4c 49%,
+    #3d3d3d 50%,
+    #4c4c4c 100%
+  );
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.45);
+  text-decoration: none;
+}
+
+.gn-item.is-active > a {
+  background: linear-gradient(
+    to bottom,
+    #444444 0%,
+    #333333 49%,
+    #2a2a2a 50%,
+    #3b3b3b 100%
+  );
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.72);
+}
+
+.gn-item:first-child > a {
+  border-radius: 3px 0 0 3px;
+}
+
+.pear-svg-logo {
+  display: block;
+  filter: drop-shadow(0 -1px 0 rgba(0, 0, 0, 0.55));
+}
+
+/* Search Pill Estilo Spotlight 2011 */
+.gn-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+#global-search-form {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 8px;
+  color: #e5e5e5;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+#global-search {
+  width: 100%;
+  height: 21px;
+  padding: 0 10px 0 24px;
+  border-radius: 11px;
+  border: 1px solid #484848;
+  background: linear-gradient(to bottom, #545454 0%, #6d6d6d 50%, #7d7d7d 100%);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.65), 0 1px 0 rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  font-size: 11px;
+  outline: none;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+#global-search::placeholder {
+  color: #dddddd;
+}
+
+#global-search:focus {
+  background: #ffffff;
+  color: #222222;
+  border-color: #2b7bd3;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35), 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+#global-search:focus::placeholder {
+  color: #888888;
+}
+
+#global-search-form:focus-within .search-icon {
+  color: #666666;
+}
+
+/* Dropdown de sugestões estilo Spotlight 2011 */
+.search-suggestions {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 270px;
+  background: #ffffff;
+  border: 1px solid #b5b5b5;
+  border-radius: 5px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  z-index: 60;
+  overflow: hidden;
+}
+
+.search-suggest-header {
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #666666;
+  background: linear-gradient(to bottom, #f5f5f5, #e6e6e6);
+  border-bottom: 1px solid #d5d5d5;
+}
+
+.search-suggest-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-bottom: 1px solid #efefef;
+  background: #ffffff;
+  text-align: left;
+  cursor: pointer;
+  font-size: 12px;
+  color: #222222;
+}
+
+.search-suggest-item:hover {
+  background: #3875d7;
+  color: #ffffff;
+}
+
+.search-suggest-item span {
+  font-size: 11px;
+  opacity: 0.78;
+}
+
+/* ==========================================================================
+   2. Hero Billboard — Apple.com Fevereiro 2011 ("Two is better than one")
+   ========================================================================== */
+
+#billboard {
+  background: #ffffff;
+  padding: 20px 0 12px;
+  text-align: center;
+}
+
+.hero-copy {
+  max-width: 780px;
+  margin: 0 auto 4px;
+}
+
+#hero-title {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: #1f1f1f;
+}
+
+.xt-light {
+  font-weight: 400;
+  color: #0077bb;
+}
+
+.hero-subtitle {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.3;
+  color: #595959;
+}
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-size: 14px;
+}
+
+.apple-link {
+  color: var(--apple-blue);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.apple-link .chevron {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.link-sep {
+  width: 1px;
+  height: 14px;
+  background: #d5d5d5;
+}
+
+/* Botões Aqua Clássicos 2011 */
+.aqua-pill-btn,
+.aqua-btn-lg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 15px;
+  border-radius: 16px;
+  border: 1px solid #1366b0;
+  background: linear-gradient(to bottom, #63bcf7 0%, #3794e2 50%, #2482d5 51%, #1b6fc1 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 1px 2px rgba(0, 0, 0, 0.22);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  text-decoration: none;
+  transition: filter 0.15s ease, transform 0.1s ease;
+}
+
+.aqua-pill-btn:hover,
+.aqua-btn-lg:hover {
+  filter: brightness(1.06);
+  text-decoration: none;
+}
+
+.aqua-pill-btn:active,
+.aqua-btn-lg:active {
+  background: linear-gradient(to bottom, #1b6fc1 0%, #2482d5 100%);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.45);
+  transform: translateY(1px);
+}
+
+.aqua-btn-lg {
+  width: 100%;
+  padding: 9px 14px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.silver-btn,
+.silver-btn-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border-radius: 4px;
+  border: 1px solid #bdbdbd;
+  background: linear-gradient(to bottom, #ffffff 0%, #f1f1f1 50%, #e4e4e4 51%, #efefef 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 1px 1px rgba(0, 0, 0, 0.08);
+  color: #333333;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.silver-btn-sm {
+  padding: 4px 10px;
+  font-size: 11px;
+}
+
+.silver-btn:hover,
+.silver-btn-sm:hover {
+  background: linear-gradient(to bottom, #ffffff 0%, #e8e8e8 100%);
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* Palco Hero */
+.hero-stage {
+  margin: 8px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#hero-main-img {
+  width: 100%;
+  max-width: 700px;
+  max-height: 325px;
+  object-fit: contain;
+  margin: 0 auto;
+  mix-blend-mode: multiply;
+  transition: opacity 0.2s ease;
+}
+
+.hero-view-switcher {
+  display: inline-flex;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 3px;
+  border-radius: 16px;
+  background: #f2f2f2;
+  border: 1px solid #dedede;
+}
+
+.view-pill {
+  border: 1px solid transparent;
+  background: transparent;
+  color: #555555;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 13px;
+  cursor: pointer;
+}
+
+.view-pill:hover {
+  color: #111111;
+}
+
+.view-pill.is-active {
+  background: linear-gradient(to bottom, #ffffff, #eaeaea);
+  border-color: #c8c8c8;
+  color: #111111;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   3. Faixa de 4 Promos Idêntica à Apple.com 2011
+   ========================================================================== */
+
+#promos {
+  padding: 4px 0 10px;
+  background: #ffffff;
+}
+
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.promo-card {
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #ffffff 0%, #f7f7f7 70%, #f1f1f1 100%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.promo-card:hover {
+  border-color: #b7b7b7;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.promo-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 12px 10px 8px;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.promo-link:hover {
+  text-decoration: none;
+}
+
+.promo-header h2 {
+  margin: 0 0 2px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: #222222;
+}
+
+.promo-header p {
+  margin: 0 0 8px;
+  font-size: 11px;
+  color: #666666;
+  line-height: 1.35;
+}
+
+.promo-card:hover .promo-header h2 {
+  color: var(--apple-blue);
+}
+
+.promo-thumb {
+  height: 116px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.promo-thumb img {
+  max-height: 112px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+/* ==========================================================================
+   4. Barra "Pear Hot News" Clássica de 2011
+   ========================================================================== */
+
+#hot-news {
+  padding: 2px 0 24px;
+  background: #ffffff;
+}
+
+.news-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 1px solid #d5d5d5;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 50%, #e9e9e9 100%);
+  box-shadow: inset 0 1px 0 #ffffff, 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.news-badge {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #7a7a7a, #545454);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.45);
+}
+
+.news-headline {
+  margin: 0;
+  flex: 1;
+  font-size: 11.5px;
+  color: #444444;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.news-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.news-arrow {
+  width: 20px;
+  height: 20px;
+  line-height: 16px;
+  text-align: center;
+  border: 1px solid #c5c5c5;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #ffffff, #e5e5e5);
+  color: #444444;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+}
+
+.news-arrow:hover {
+  background: #e1e1e1;
+}
+
+.news-cta {
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+/* ==========================================================================
+   5. PearStore Online 2011 (Catálogo + Configurador + Checkout)
+   ========================================================================== */
+
+#pearstore {
+  background: linear-gradient(to bottom, #f7f7f7 0%, #efefef 100%);
+  border-top: 1px solid #e2e2e2;
+  padding: 26px 0 34px;
+}
+
+.store-window {
+  border: 1px solid var(--border-store);
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.store-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  border-bottom: 1px solid #cccccc;
+  background: linear-gradient(to bottom, #fdfdfd 0%, #ececec 50%, #e2e2e2 100%);
+}
+
+.store-title-group h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: #222222;
+  line-height: 1.1;
+}
+
+.shipping-note {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: #555555;
+}
+
+.store-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.store-tab {
+  padding: 5px 11px;
+  border-radius: 4px;
+  border: 1px solid #c3c3c3;
+  background: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  color: #333333;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.store-tab:hover {
+  border-color: #9e9e9e;
+}
+
+.store-tab.is-active {
+  background: linear-gradient(to bottom, #545454, #363636);
+  border-color: #2c2c2c;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.store-body {
+  display: grid;
+  grid-template-columns: 1fr 318px;
+  align-items: start;
+}
+
+.store-catalog-col {
+  padding: 18px;
+  border-right: 1px solid #e3e3e3;
+}
+
+/* Configurador PearPhone XT */
+.configurator-box {
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border: 1px solid #d2dce5;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #f9fcff 0%, #f1f6fa 100%);
+}
+
+.config-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #dce5ed;
+}
+
+.config-kicker {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #1b6fc1;
+}
+
+.config-header h3 {
+  margin: 2px 0 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: #222222;
+}
+
+.config-price-tag {
+  text-align: right;
+}
+
+.config-price-tag span {
+  display: block;
+  font-size: 10.5px;
+  color: #666666;
+}
+
+.config-price-tag strong {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: #1b6fc1;
+}
+
+.config-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.step-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #333333;
+}
+
+.color-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border-radius: 14px;
+  border: 1px solid #cccccc;
+  background: #ffffff;
+  font-size: 11px;
+  color: #333333;
+  cursor: pointer;
+}
+
+.swatch-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--swatch-color);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.swatch.is-selected {
+  border-color: #1b6fc1;
+  background: #eaf4fd;
+  font-weight: 700;
+  box-shadow: 0 0 0 1px #1b6fc1;
+}
+
+.storage-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.storage-btn {
+  flex: 1 1 82px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  border: 1px solid #c6c6c6;
+  background: linear-gradient(to bottom, #ffffff, #ececec);
+  font-size: 11px;
+  font-weight: 700;
+  color: #333333;
+  cursor: pointer;
+  text-align: center;
+}
+
+.storage-btn small {
+  display: block;
+  font-weight: 400;
+  font-size: 10px;
+  color: #666666;
+}
+
+.storage-btn.is-selected {
+  border-color: #1366b0;
+  background: linear-gradient(to bottom, #e5f2fd, #cde5fa);
+  color: #0b4a83;
+}
+
+/* Status de filtro */
+.catalog-filter-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 12px;
+  margin-bottom: 12px;
+  background: #f5f5f5;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  font-size: 11.5px;
+}
+
+/* Grade de Produtos 2011 */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  background: #ffffff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.product-card.has-qty {
+  border-color: #4697e2;
+  box-shadow: 0 0 0 1px rgba(70, 151, 226, 0.28);
+}
+
+.product-card.is-highlighted {
+  animation: pulseHighlight 1.3s ease;
+}
+
+@keyframes pulseHighlight {
+  0% { box-shadow: 0 0 0 3px rgba(0, 136, 204, 0.45); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 136, 204, 0); }
+}
+
+.product-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.product-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: #f0f0f0;
+  color: #555555;
+  border: 1px solid #dadada;
+}
+
+.product-badge.is-new {
+  background: #e7f3fc;
+  color: #1366b0;
+  border-color: #bddbf5;
+}
+
+.specs-link-btn {
+  border: none;
+  background: none;
+  color: var(--apple-blue);
+  font-size: 11px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.specs-link-btn:hover {
+  text-decoration: underline;
+}
+
+.product-image-wrap {
+  height: 132px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.product-image-wrap img {
+  max-height: 126px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.product-title {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: #222222;
+}
+
+.product-desc {
+  margin: 0 0 10px;
+  font-size: 11px;
+  color: #666666;
+  line-height: 1.4;
+}
+
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid #eeeeee;
+}
+
+.product-price {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: #222222;
+}
+
+.qty-control {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.qty-btn {
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: linear-gradient(to bottom, #fafafa, #e5e5e5);
+  color: #333333;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.qty-btn:hover {
+  background: #dcdcdc;
+}
+
+.qty-input {
+  width: 38px;
+  height: 26px;
+  border: none;
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #222222;
+  -moz-appearance: textfield;
+}
+
+.qty-input::-webkit-inner-spin-button,
+.qty-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ==========================================================================
+   6. Sidebar Direita — Resumo do Pedido & Pagamento
+   ========================================================================== */
+
+.checkout-sidebar {
+  background: #fafafa;
+  min-height: 100%;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: linear-gradient(to bottom, #f4f4f4, #e5e5e5);
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: #222222;
+}
+
+.units-badge {
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #666666;
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.sidebar-content {
+  padding: 14px 16px;
+}
+
+.selected-items-list {
+  margin-bottom: 12px;
+}
+
+.empty-cart-msg {
+  margin: 0;
+  padding: 12px;
+  border: 1px dashed #d0d0d0;
+  border-radius: 4px;
+  background: #ffffff;
+  font-size: 11px;
+  color: #666666;
+  text-align: center;
+}
+
+.cart-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: 11.5px;
+}
+
+.cart-item-info strong {
+  display: block;
+  color: #222222;
+}
+
+.cart-item-info small {
+  color: #666666;
+  font-size: 10.5px;
+}
+
+.cart-item-right {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.cart-item-right span {
+  display: block;
+  font-weight: 700;
+  color: #222222;
+}
+
+.remove-item-btn {
+  border: none;
+  background: none;
+  color: #999999;
+  font-size: 10.5px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.remove-item-btn:hover {
+  color: #c62828;
+  text-decoration: underline;
+}
+
+.alert-box {
+  padding: 9px 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.alert-warning {
+  background: #fff8db;
+  border: 1px solid #e6cb6c;
+  color: #6e5300;
+}
+
+.calculation-result {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 2px solid #dcdcdc;
+}
+
+.calc-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: 1px solid #bdd7ef;
+  background: #eef6fd;
+}
+
+.calc-total-row span {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #234c70;
+}
+
+.calc-total-row strong {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: #0b4a83;
+}
+
+.stale-note {
+  margin: 8px 0 0;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background: #fff8db;
+  border: 1px solid #e6cb6c;
+  color: #6e5300;
+  font-size: 10.5px;
+}
+
+/* Escolha de Pagamento */
+.payment-section {
+  margin-top: 14px;
+}
+
+.payment-section h4 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #222222;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #ffffff, #f4f4f4);
+  cursor: pointer;
+}
+
+.payment-option.is-selected {
+  border-color: #1366b0;
+  background: #eaf4fd;
+  box-shadow: 0 0 0 1px #1366b0;
+}
+
+.payment-card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 6px;
+}
+
+.payment-card-body strong {
+  font-size: 12px;
+  color: #222222;
+}
+
+.payment-badge-green {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: #e1f5e8;
+  color: #1b6f38;
+  border: 1px solid #b8e3c7;
+}
+
+.payment-badge-gray {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: #eeeeee;
+  color: #555555;
+  border: 1px solid #d5d5d5;
+}
+
+.payment-detail-box {
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  margin-bottom: 10px;
+}
+
+.payment-detail-box.is-pix {
+  background: #eefaf2;
+  border: 1px solid #a9dfc0;
+}
+
+.payment-detail-box.is-cartao {
+  background: #ffffff;
+  border: 1px solid #c9d5e2;
+}
+
+.installment-picker {
+  margin-bottom: 10px;
+}
+
+.installment-picker label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #333333;
+}
+
+.apple-select {
+  width: 100%;
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid #b5b5b5;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #ffffff, #efefef);
+  font-size: 12px;
+  color: #222222;
+}
+
+.detail-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.detail-line:last-child {
+  margin-bottom: 0;
+}
+
+.discount-line {
+  color: #1b6f38;
+  font-weight: 600;
+}
+
+.final-line {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  font-size: 12.5px;
+}
+
+.final-line strong {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: #111111;
+}
+
+.payment-detail-box.is-pix .final-line strong {
+  color: #145e2e;
+}
+
+.subtle-line {
+  color: #666666;
+  font-size: 11px;
+}
+
+.btn-confirm {
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   7. Rodapé Global Apple 2011 + Breadcrumbs
+   ========================================================================== */
+
+#globalfooter {
+  background: #ffffff;
+  padding: 18px 0 32px;
+  border-top: 1px solid #e4e4e4;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 12px;
+  margin-bottom: 14px;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #fafafa 0%, #ededed 100%);
+  font-size: 11px;
+  color: #666666;
+}
+
+.crumb-home {
+  display: inline-flex;
+  align-items: center;
+  color: #555555;
+}
+
+.crumb-sep {
+  color: #999999;
+  font-size: 13px;
+}
+
+.footer-meta {
+  font-size: 11px;
+  color: #777777;
+  line-height: 1.6;
+}
+
+.footer-shop,
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 6px;
+}
+
+.footer-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-links a {
+  border-left: 1px solid #d5d5d5;
+  padding-left: 10px;
+}
+
+.footer-links a:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+/* ==========================================================================
+   8. Modal Mac OS X Snow Leopard (Specs / Keynote / Recibo)
+   ========================================================================== */
+
+.mac-modal-backdrop[hidden] {
+  display: none;
+}
+
+.mac-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.mac-window {
+  width: 100%;
+  max-width: 560px;
+  border-radius: 7px;
+  border: 1px solid #595959;
+  background: #ffffff;
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.mac-titlebar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 12px;
+  background: linear-gradient(to bottom, #e8e8e8 0%, #cfcfcf 100%);
+  border-bottom: 1px solid #ababab;
+}
+
+.mac-traffic-lights {
+  position: absolute;
+  left: 10px;
+  display: flex;
+  gap: 7px;
+}
+
+.traffic-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  padding: 0;
+}
+
+.dot-red {
+  background: radial-gradient(circle at 35% 35%, #ff8b83, #e0443e);
+  cursor: pointer;
+}
+
+.dot-yellow {
+  background: radial-gradient(circle at 35% 35%, #ffe07d, #dea123);
+}
+
+.dot-green {
+  background: radial-gradient(circle at 35% 35%, #84e87c, #1aab29);
+}
+
+.mac-titlebar-text {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #333333;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.mac-window-body {
+  padding: 18px 20px;
+  max-height: 70vh;
+  overflow-y: auto;
+  font-size: 12px;
+  line-height: 1.55;
+  color: #333333;
+}
+
+.mac-window-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #f2f2f2;
+  border-top: 1px solid #dadada;
+}
+
+.specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.specs-table th,
+.specs-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid #e6e6e6;
+  text-align: left;
+  vertical-align: top;
+}
+
+.specs-table th {
+  width: 36%;
+  color: #555555;
+  font-weight: 700;
+}
+
+.receipt-box {
+  padding: 12px 14px;
+  border: 1px solid #d5d5d5;
+  border-radius: 4px;
+  background: #fafafa;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px dotted #d9d9d9;
+}
+
+.receipt-total {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 2px solid #cccccc;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   9. Responsividade (Tablets & Mobile)
+   ========================================================================== */
+
+@media (max-width: 920px) {
+  .promo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .store-body {
+    grid-template-columns: 1fr;
+  }
+
+  .store-catalog-col {
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .config-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  #top-wrap {
+    padding-top: 10px;
+  }
+
+  #globalnav {
+    height: auto;
+    flex-wrap: wrap;
+  }
+
+  .gn-item {
+    flex: 1 1 25%;
+    height: 34px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  }
+
+  .gn-item:first-child {
+    flex: 0 0 25%;
+    border-radius: 3px 0 0 0;
+  }
+
+  .gn-item:last-child {
+    flex: 1 1 100%;
+    height: 36px;
+    border-bottom: none;
+    border-radius: 0 0 3px 3px;
+  }
+
+  #hero-title {
+    font-size: 38px;
+  }
+
+  .hero-subtitle {
+    font-size: 17px;
+  }
+
+  .link-sep {
+    display: none;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .news-bar {
+    flex-wrap: wrap;
+  }
+
+  .news-headline {
+    flex-basis: 100%;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .promo-grid {
+    grid-template-columns: 1fr;
+  }
+}
