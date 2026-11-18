@@ -305,6 +305,14 @@
                           <span class="payment-badge-gray">Até 10x sem juros</span>
                         </span>
                       </label>
+
+                      <label class="payment-option" id="opt-pituca-label">
+                        <input type="radio" name="formaPagamento" value="pituca" id="pay-pituca" onchange="escolherPagamento('pituca')">
+                        <span class="payment-card-body">
+                          <strong>Pituca Coins&trade;</strong>
+                          <span class="payment-badge-gold">1 pituca = R$ 100</span>
+                        </span>
+                      </label>
                     </div>
 
                     <div id="pix-result-box" class="payment-detail-box is-pix escondido">
@@ -349,6 +357,21 @@
                       <div class="detail-line subtle-line">
                         <span>Valor total no cartão:</span>
                         <span id="cartao-total-geral">R$ 0,00</span>
+                      </div>
+                    </div>
+
+                    <div id="pituca-result-box" class="payment-detail-box is-pituca escondido">
+                      <div class="detail-line">
+                        <span>Valor em Reais:</span>
+                        <span id="pituca-valor-reais">R$ 0,00</span>
+                      </div>
+                      <div class="detail-line">
+                        <span>Cotação Pituca Coins&trade;:</span>
+                        <span>1 pituca = R$ 100,00</span>
+                      </div>
+                      <div class="detail-line final-line">
+                        <span>Em Pitucas:</span>
+                        <strong id="pituca-valor-total">0,00 Pituca Coins&trade;</strong>
                       </div>
                     </div>
 

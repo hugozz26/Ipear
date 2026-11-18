@@ -1217,6 +1217,16 @@ select {
   border: 1px solid #d5d5d5;
 }
 
+.payment-badge-gold {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: #fff4d6;
+  color: #8a5a00;
+  border: 1px solid #e6c97a;
+}
+
 .payment-detail-box {
   padding: 10px 12px;
   border-radius: 4px;
@@ -1232,6 +1242,11 @@ select {
 .payment-detail-box.is-cartao {
   background: #ffffff;
   border: 1px solid #c9d5e2;
+}
+
+.payment-detail-box.is-pituca {
+  background: #fffaf0;
+  border: 1px solid #e2c57e;
 }
 
 .installment-picker {
@@ -1288,6 +1303,12 @@ select {
 
 .payment-detail-box.is-pix .final-line strong {
   color: #145e2e;
+}
+
+.payment-detail-box.is-pituca .final-line strong {
+  color: #8a5a00;
+  font-size: 15px;
+  white-space: nowrap;
 }
 
 .subtle-line {

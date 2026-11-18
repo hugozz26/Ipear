@@ -102,6 +102,7 @@ var catalogoProdutos = [
 var noticiasHotNews = [
   "Lançamento: Novo PearPhone XT chega à PearStore com 5% de desconto no PIX ou Dinheiro.",
   "PearStore Brasil: Parcele seu PearPhone, PearPad ou PearBook em até 10x sem juros no Cartão.",
+  "Novidade: Agora você pode pagar com Pituca Coins™ na PearStore (1 pituca = R$ 100,00).",
   "PearOS 4.3 disponível: SplashFace HD, PeeMiner e PearTunes sincronizados na nuvem.",
   "Frete grátis para todo o Brasil em pedidos acima de R$ 200,00 na PearStore Online."
 ];
@@ -131,6 +132,11 @@ var noticiaAtual = 0;
 
 function formatarMoeda(valor) {
   return "R$ " + Number(valor).toFixed(2).replace(".", ",");
+}
+
+function formatarPitucas(valorReais) {
+  var pitucas = Number(valorReais) / 100;
+  return pitucas.toFixed(2).replace(".", ",") + " Pituca Coins™";
 }
 
 function pegarPrecoProduto(prod) {
@@ -407,8 +413,10 @@ function atualizarParcelas() {
 function atualizarPainelPagamento() {
   var labelPix = document.getElementById("opt-pix-label");
   var labelCartao = document.getElementById("opt-cartao-label");
+  var labelPituca = document.getElementById("opt-pituca-label");
   var boxPix = document.getElementById("pix-result-box");
   var boxCartao = document.getElementById("cartao-result-box");
+  var boxPituca = document.getElementById("pituca-result-box");
   var btnFinalizar = document.getElementById("btn-finalizar");
 
   if (formaPagamento === "pix") {
@@ -423,6 +431,12 @@ function atualizarPainelPagamento() {
     labelCartao.classList.remove("is-selected");
   }
 
+  if (formaPagamento === "pituca") {
+    labelPituca.classList.add("is-selected");
+  } else {
+    labelPituca.classList.remove("is-selected");
+  }
+
   if (formaPagamento === "pix") {
     var desconto = totalCalculado * 0.05;
     var finalPix = totalCalculado - desconto;
@@ -433,6 +447,7 @@ function atualizarPainelPagamento() {
 
     boxPix.classList.remove("escondido");
     boxCartao.classList.add("escondido");
+    boxPituca.classList.add("escondido");
     btnFinalizar.classList.remove("escondido");
   } else if (formaPagamento === "cartao") {
     var qtdParcelas = Number(parcelasSelecionadas) || 1;
@@ -446,10 +461,20 @@ function atualizarPainelPagamento() {
 
     boxPix.classList.add("escondido");
     boxCartao.classList.remove("escondido");
+    boxPituca.classList.add("escondido");
+    btnFinalizar.classList.remove("escondido");
+  } else if (formaPagamento === "pituca") {
+    document.getElementById("pituca-valor-reais").innerText = formatarMoeda(totalCalculado);
+    document.getElementById("pituca-valor-total").innerText = formatarPitucas(totalCalculado);
+
+    boxPix.classList.add("escondido");
+    boxCartao.classList.add("escondido");
+    boxPituca.classList.remove("escondido");
     btnFinalizar.classList.remove("escondido");
   } else {
     boxPix.classList.add("escondido");
     boxCartao.classList.add("escondido");
+    boxPituca.classList.add("escondido");
     btnFinalizar.classList.add("escondido");
   }
 }
@@ -466,6 +491,7 @@ function zerarPedido() {
 
   document.getElementById("pay-pix").checked = false;
   document.getElementById("pay-cartao").checked = false;
+  document.getElementById("pay-pituca").checked = false;
   document.getElementById("select-parcelas").value = "1";
   document.getElementById("order-calculation-box").classList.add("escondido");
   document.getElementById("calc-warning").classList.add("escondido");
@@ -524,7 +550,7 @@ function abrirModalKeynote() {
     "    Inspirado nos clássicos aparelhos de 2011, o novo <strong>PearPhone XT</strong> mantém a icônica silhueta em pera com faixa metálica de sinal, ganha o assistente de voz <strong>PearSiri</strong> e estreia em 5 cores vibrantes na <strong>PearStore Online</strong>." +
     "  </p>" +
     '  <p style="margin:0; font-size:11px; color:#777;">' +
-    "    Promoção de lançamento: 5% de desconto no Dinheiro ou PIX, ou até 10x sem juros no Cartão de Crédito." +
+    "    Promoção de lançamento: 5% de desconto no Dinheiro ou PIX, até 10x sem juros no Cartão de Crédito ou pague em Pituca Coins™." +
     "  </p>" +
     "</div>";
 
@@ -555,7 +581,7 @@ function abrirModalSuporte() {
     '<ol style="margin:0 0 12px; padding-left:18px; color:#444;">' +
     "  <li>Escolha a cor e capacidade do seu <strong>PearPhone XT</strong> e informe as quantidades desejadas nos produtos do catálogo.</li>" +
     "  <li>Clique em <strong>Calcular Valor da Compra</strong> no painel à direita para ver o total detalhado.</li>" +
-    "  <li>Escolha pagar via <strong>Dinheiro / PIX</strong> (com 5% de desconto automático) ou <strong>Cartão de Crédito</strong> (selecione de 1x até 10x sem juros para ver o valor da parcela).</li>" +
+    "  <li>Escolha pagar via <strong>Dinheiro / PIX</strong> (com 5% de desconto automático), <strong>Cartão de Crédito</strong> (até 10x sem juros) ou <strong>Pituca Coins™</strong> (1 pituca = R$ 100,00).</li>" +
     "</ol>" +
     '<p style="margin:0; color:#666; font-size:11px;">' +
     "  Atendimento PearCare: 0800-PEAR-2011 • Garantia limitada de 1 ano em todos os produtos Pear Company." +
@@ -592,6 +618,12 @@ function abrirComprovante() {
       '<div class="receipt-row"><span>Forma de pagamento</span><strong>Dinheiro / PIX (5% de desconto)</strong></div>' +
       '<div class="receipt-row"><span>Desconto aplicado (5%)</span><strong style="color:#1b6f38;">- ' + formatarMoeda(desconto) + "</strong></div>" +
       '<div class="receipt-total"><span>Total Final à Vista</span><span style="color:#145e2e;">' + formatarMoeda(finalPix) + "</span></div>";
+  } else if (formaPagamento === "pituca") {
+    resumoPagamento =
+      '<div class="receipt-row"><span>Forma de pagamento</span><strong>Pituca Coins™</strong></div>' +
+      '<div class="receipt-row"><span>Cotação aplicada</span><strong>1 pituca = R$ 100,00</strong></div>' +
+      '<div class="receipt-row"><span>Valor em Reais</span><strong>' + formatarMoeda(total) + "</strong></div>" +
+      '<div class="receipt-total"><span>Total em Pituca Coins™</span><span style="color:#8a5a00;">' + formatarPitucas(total) + "</span></div>";
   } else {
     var qtdP = parcelasSelecionadas;
     var valorP = total / qtdP;
