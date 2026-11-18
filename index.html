@@ -3,50 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pear — PearPhone XT — PearStore Online</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 28'%3E%3Cpath d='M13.3 5.2c.2-1.8 1.4-3.3 3.1-3.9-.1 1.7-1.2 3.2-3.1 3.9z' fill='%231c6da8'/%3E%3Cpath d='M12.2 6.2c2.1 0 3.7 1.3 4.5 3.4.6 1.7 1.3 3.3 2.3 4.8 1.5 2.1 2.1 4.4 1.5 6.9-.8 3.2-3.4 5.5-6.7 5.7-.9.1-1.6-.2-2.2-.2-.7 0-1.4.3-2.3.2-3.3-.2-5.9-2.5-6.7-5.7-.6-2.5 0-4.8 1.5-6.9 1-1.5 1.7-3.1 2.3-4.8.8-2.1 2.4-3.4 4.5-3.4h1.3z' fill='%231c6da8'/%3E%3C/svg%3E">
+  <title>Pear — PearPhone XT — PearStore</title>
+  <link rel="icon" href="assets/img/pear-icon.svg">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- Barra de Navegação Global Estilo Apple 2011 -->
-  <header id="topo">
-    <nav class="navbar" aria-label="Menu principal">
-      <ul id="globalnav">
-        <li class="gn-logo">
-          <a href="#hero" aria-label="Pear Início" data-filtro="todos">
-            <svg viewBox="0 0 24 28" width="16" height="19" aria-hidden="true">
-              <path d="M13.3 5.2c.2-1.8 1.4-3.3 3.1-3.9-.1 1.7-1.2 3.2-3.1 3.9z" fill="currentColor"/>
-              <path d="M12.2 6.2c2.1 0 3.7 1.3 4.5 3.4.6 1.7 1.3 3.3 2.3 4.8 1.5 2.1 2.1 4.4 1.5 6.9-.8 3.2-3.4 5.5-6.7 5.7-.9.1-1.6-.2-2.2-.2-.7 0-1.4.3-2.3.2-3.3-.2-5.9-2.5-6.7-5.7-.6-2.5 0-4.8 1.5-6.9 1-1.5 1.7-3.1 2.3-4.8.8-2.1 2.4-3.4 4.5-3.4h1.3z" fill="currentColor"/>
-            </svg>
+  <!-- menu principal -->
+  <header class="topo">
+    <nav class="navbar">
+      <ul class="menu">
+        <li class="menu-logo">
+          <a href="#banner" onclick="filtrar('todos')">
+            <img src="assets/img/pear-logo.svg" alt="Pear" width="15" height="18">
           </a>
         </li>
-        <li><a href="#pearstore" data-filtro="todos">PearStore</a></li>
-        <li><a href="#pearstore" data-filtro="computadores">PearBook</a></li>
-        <li><a href="#pearstore" data-filtro="acessorios">PearPod</a></li>
-        <li class="ativo"><a href="#hero" data-filtro="pearphones">PearPhone</a></li>
-        <li><a href="#pearstore" data-filtro="computadores">PearPad</a></li>
-        <li><a href="#hot-news">PearTunes</a></li>
+        <li><a href="#loja" onclick="filtrar('todos')">PearStore</a></li>
+        <li><a href="#loja" onclick="filtrar('computadores')">PearBook</a></li>
+        <li><a href="#loja" onclick="filtrar('acessorios')">PearPod</a></li>
+        <li class="ativo"><a href="#banner" onclick="filtrar('pearphones')">PearPhone</a></li>
+        <li><a href="#loja" onclick="filtrar('computadores')">PearPad</a></li>
+        <li><a href="#noticias">PearTunes</a></li>
         <li><a href="#rodape">Suporte</a></li>
-        <li class="gn-busca">
-          <input type="search" id="campo-busca" placeholder="Buscar" aria-label="Buscar produtos">
+        <li class="menu-busca">
+          <input type="text" id="busca" placeholder="Buscar" oninput="buscarProduto()" onkeydown="if (event.key === 'Enter') location.href = '#loja'">
         </li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <!-- Hero Principal Estilo Apple Fevereiro de 2011 -->
-    <section id="hero" class="container">
+    <!-- banner principal -->
+    <section id="banner" class="caixa">
       <h1>PearPhone <span>XT</span></h1>
-      <p class="hero-sub">Dois é melhor que um. Tela curva em pera, faixa metálica e PearSiri.</p>
-      <p class="hero-links">
-        <a href="#specs-box" id="btn-specs">Especificações técnicas &rsaquo;</a>
-        <span class="sep" aria-hidden="true">|</span>
-        <a href="#pearstore">Comprar na PearStore &rsaquo;</a>
+      <p class="subtitulo">Dois é melhor que um. Tela curva em pera, faixa metálica e PearSiri.</p>
+      <p class="links-banner">
+        <a href="#specs" onclick="mostrarSpecs(); return false;">Especificações técnicas &rsaquo;</a>
+        <span>|</span>
+        <a href="#loja">Comprar na PearStore &rsaquo;</a>
       </p>
 
-      <div id="specs-box" class="specs-box" hidden>
+      <div id="specs" class="specs escondido">
         <table>
           <tr><th>Tela</th><td>Retina curva formato pera de 3,5" (960 x 640 px)</td></tr>
           <tr><th>Processador</th><td>Chip Pear A5 Dual-Core 1,0 GHz</td></tr>
@@ -55,70 +52,69 @@
         </table>
       </div>
 
-      <img class="hero-img" src="assets/img/pearphone-xt-hero.jpg" alt="Dois aparelhos PearPhone XT azuis lado a lado em visão frontal e traseira">
+      <img class="foto-banner" src="assets/img/pearphone-xt-hero.jpg" alt="PearPhone XT azul frente e verso">
     </section>
 
-    <!-- Faixa com 4 Promos Conectados Estilo 2011 -->
-    <section id="promos" class="container" aria-label="Destaques da linha Pear">
-      <div class="promo-strip">
-        <a href="#pearstore" class="promo-tile" data-filtro="pearphones">
+    <!-- 4 destaques -->
+    <section class="caixa">
+      <div class="promos">
+        <a href="#loja" class="promo-item" onclick="filtrar('pearphones')">
           <h2>PearPhone em 5 cores</h2>
           <p>Azul, Rosa, Laranja, Verde e Preto.</p>
-          <img src="assets/img/pearphone-colors.jpg" alt="PearPhones em cinco cores metálicas">
+          <img src="assets/img/pearphone-colors.jpg" alt="PearPhone em 5 cores">
         </a>
-        <a href="#pearstore" class="promo-tile" data-filtro="computadores">
+        <a href="#loja" class="promo-item" onclick="filtrar('computadores')">
           <h2>PearPad 2</h2>
           <p>Mais fino, leve e mágico.</p>
-          <img src="assets/img/pearpad-2.jpg" alt="Tablet PearPad 2 em alumínio escovado">
+          <img src="assets/img/pearpad-2.jpg" alt="PearPad 2">
         </a>
-        <a href="#pearstore" class="promo-tile" data-filtro="computadores">
+        <a href="#loja" class="promo-item" onclick="filtrar('computadores')">
           <h2>PearBook Pro</h2>
           <p>Alumínio unibody e logo iluminado.</p>
-          <img src="assets/img/pearbook-pro.jpg" alt="Notebook PearBook Pro prateado">
+          <img src="assets/img/pearbook-pro.jpg" alt="PearBook Pro">
         </a>
-        <a href="#pearstore" class="promo-tile" data-filtro="acessorios">
+        <a href="#loja" class="promo-item" onclick="filtrar('acessorios')">
           <h2>Pear App Store</h2>
           <p>SplashFace, PeeMiner e PearTunes.</p>
-          <img src="assets/img/pear-appstore.jpg" alt="Aplicativos da Pear App Store">
+          <img src="assets/img/pear-appstore.jpg" alt="Pear App Store">
         </a>
       </div>
     </section>
 
-    <!-- Barra Pear Hot News -->
-    <section id="hot-news" class="container" aria-label="Notícias">
-      <div class="news-bar">
-        <span class="news-tag">Pear Hot News</span>
-        <span class="news-texto">Novo PearPhone XT na PearStore: 5% de desconto no Dinheiro/PIX ou até 10x sem juros no Cartão.</span>
-        <a href="#pearstore" class="news-link">Ir para a PearStore &rsaquo;</a>
+    <!-- barra de noticias -->
+    <section id="noticias" class="caixa">
+      <div class="barra-news">
+        <span class="tag-news">Pear Hot News</span>
+        <span class="texto-news">Novo PearPhone XT na PearStore: 5% de desconto no Dinheiro/PIX ou até 10x sem juros no Cartão.</span>
+        <a href="#loja" class="link-news">Ir para a PearStore &rsaquo;</a>
       </div>
     </section>
 
-    <!-- Loja Online PearStore -->
-    <section id="pearstore" class="container" aria-labelledby="titulo-loja">
-      <div class="store-box">
-        <div class="store-header">
+    <!-- loja -->
+    <section id="loja" class="caixa">
+      <div class="loja-box">
+        <div class="loja-topo">
           <div>
-            <h2 id="titulo-loja">PearStore Online</h2>
-            <p class="store-sub">Escolha seus produtos, informe as quantidades e clique em Calcular Valor da Compra.</p>
+            <h2>PearStore Online</h2>
+            <p>Escolha seus produtos, informe as quantidades e clique em Calcular Valor da Compra.</p>
           </div>
-          <div class="store-filtros" role="tablist" aria-label="Categorias">
-            <button type="button" class="filtro-btn ativo" data-categoria="todos">Todos</button>
-            <button type="button" class="filtro-btn" data-categoria="pearphones">PearPhone</button>
-            <button type="button" class="filtro-btn" data-categoria="computadores">PearPad &amp; PearBook</button>
-            <button type="button" class="filtro-btn" data-categoria="acessorios">Acessórios</button>
+          <div class="filtros">
+            <button type="button" class="btn-filtro ativo" id="f-todos" onclick="filtrar('todos')">Todos</button>
+            <button type="button" class="btn-filtro" id="f-pearphones" onclick="filtrar('pearphones')">PearPhone</button>
+            <button type="button" class="btn-filtro" id="f-computadores" onclick="filtrar('computadores')">PearPad &amp; PearBook</button>
+            <button type="button" class="btn-filtro" id="f-acessorios" onclick="filtrar('acessorios')">Acessórios</button>
           </div>
         </div>
 
-        <div class="store-layout">
-          <!-- Produtos diretamente no HTML -->
-          <div class="catalogo" id="catalogo">
-            <article class="produto-card" data-categoria="pearphones" data-busca="pearphone xt celular smartphone pera">
+        <div class="loja-conteudo">
+          <div class="produtos" id="lista-produtos">
+            <div class="card cat-pearphones">
               <img src="assets/img/pearphone-xt-hero.jpg" alt="PearPhone XT">
               <h3>PearPhone XT</h3>
-              <p class="produto-desc">Tela curva em pera, PearSiri e câmera HD 8MP.</p>
-              <div class="xt-opcoes">
+              <p class="desc">Tela curva em pera, PearSiri e câmera HD 8MP.</p>
+              <div class="opcoes-xt">
                 <label>Cor:
-                  <select id="xt-cor">
+                  <select id="xt-cor" onchange="atualizarXT()">
                     <option value="Azul Clássico">Azul Clássico</option>
                     <option value="Preto Grafite">Preto Grafite</option>
                     <option value="Rosa Chiclete">Rosa Chiclete</option>
@@ -127,136 +123,136 @@
                   </select>
                 </label>
                 <label>Capacidade:
-                  <select id="xt-capacidade">
-                    <option value="1799" data-gb="16 GB">16 GB (R$ 1.799)</option>
-                    <option value="2099" data-gb="32 GB">32 GB (R$ 2.099)</option>
-                    <option value="2399" data-gb="64 GB">64 GB (R$ 2.399)</option>
+                  <select id="xt-cap" onchange="atualizarXT()">
+                    <option value="1799">16 GB (R$ 1.799)</option>
+                    <option value="2099">32 GB (R$ 2.099)</option>
+                    <option value="2399">64 GB (R$ 2.399)</option>
                   </select>
                 </label>
               </div>
-              <div class="produto-rodape">
-                <strong id="xt-preco" class="preco">R$ 1.799,00</strong>
-                <div class="qtd-controle">
-                  <button type="button" class="btn-qtd" data-delta="-1" aria-label="Diminuir PearPhone XT">-</button>
-                  <input type="number" id="qtd-xt" class="qtd-input" min="0" max="50" value="0" data-nome="PearPhone XT (16 GB - Azul Clássico)" data-preco="1799" aria-label="Quantidade PearPhone XT">
-                  <button type="button" class="btn-qtd" data-delta="1" aria-label="Aumentar PearPhone XT">+</button>
+              <div class="card-rodape">
+                <strong id="xt-preco" class="preco">R$ 1799,00</strong>
+                <div class="qtd-box">
+                  <button type="button" onclick="mudarQtd('qtd-xt', -1)">-</button>
+                  <input type="number" id="qtd-xt" min="0" value="0" oninput="atualizarResumo()">
+                  <button type="button" onclick="mudarQtd('qtd-xt', 1)">+</button>
                 </div>
               </div>
-            </article>
+            </div>
 
-            <article class="produto-card" data-categoria="pearphones" data-busca="pearphone gx classico original azul">
-              <img src="assets/img/pearphone-original.jpg" alt="PearPhone GX Clássico">
+            <div class="card cat-pearphones">
+              <img src="assets/img/pearphone-original.jpg" alt="PearPhone GX">
               <h3>PearPhone GX (16 GB)</h3>
-              <p class="produto-desc">Edição clássica com faixa metálica e PearChat integrado.</p>
-              <div class="produto-rodape">
-                <strong class="preco">R$ 1.399,00</strong>
-                <div class="qtd-controle">
-                  <button type="button" class="btn-qtd" data-delta="-1" aria-label="Diminuir PearPhone GX">-</button>
-                  <input type="number" class="qtd-input" min="0" max="50" value="0" data-nome="PearPhone GX (16 GB)" data-preco="1399" aria-label="Quantidade PearPhone GX">
-                  <button type="button" class="btn-qtd" data-delta="1" aria-label="Aumentar PearPhone GX">+</button>
+              <p class="desc">Edição clássica com faixa metálica e PearChat integrado.</p>
+              <div class="card-rodape">
+                <strong class="preco">R$ 1399,00</strong>
+                <div class="qtd-box">
+                  <button type="button" onclick="mudarQtd('qtd-gx', -1)">-</button>
+                  <input type="number" id="qtd-gx" min="0" value="0" oninput="atualizarResumo()">
+                  <button type="button" onclick="mudarQtd('qtd-gx', 1)">+</button>
                 </div>
               </div>
-            </article>
+            </div>
 
-            <article class="produto-card" data-categoria="computadores" data-busca="pearpad 2 tablet aluminio">
+            <div class="card cat-computadores">
               <img src="assets/img/pearpad-2.jpg" alt="PearPad 2">
               <h3>PearPad 2 (32 GB)</h3>
-              <p class="produto-desc">Tablet em alumínio escovado com bateria para até 10 horas.</p>
-              <div class="produto-rodape">
-                <strong class="preco">R$ 1.699,00</strong>
-                <div class="qtd-controle">
-                  <button type="button" class="btn-qtd" data-delta="-1" aria-label="Diminuir PearPad 2">-</button>
-                  <input type="number" class="qtd-input" min="0" max="50" value="0" data-nome="PearPad 2 (32 GB)" data-preco="1699" aria-label="Quantidade PearPad 2">
-                  <button type="button" class="btn-qtd" data-delta="1" aria-label="Aumentar PearPad 2">+</button>
+              <p class="desc">Tablet em alumínio escovado com bateria para até 10 horas.</p>
+              <div class="card-rodape">
+                <strong class="preco">R$ 1699,00</strong>
+                <div class="qtd-box">
+                  <button type="button" onclick="mudarQtd('qtd-pad', -1)">-</button>
+                  <input type="number" id="qtd-pad" min="0" value="0" oninput="atualizarResumo()">
+                  <button type="button" onclick="mudarQtd('qtd-pad', 1)">+</button>
                 </div>
               </div>
-            </article>
+            </div>
 
-            <article class="produto-card" data-categoria="computadores" data-busca="pearbook pro notebook macbook">
+            <div class="card cat-computadores">
               <img src="assets/img/pearbook-pro.jpg" alt="PearBook Pro">
               <h3>PearBook Pro 13"</h3>
-              <p class="produto-desc">Corpo unibody, Intel Core i5, 4 GB RAM e logo iluminado.</p>
-              <div class="produto-rodape">
-                <strong class="preco">R$ 3.499,00</strong>
-                <div class="qtd-controle">
-                  <button type="button" class="btn-qtd" data-delta="-1" aria-label="Diminuir PearBook Pro">-</button>
-                  <input type="number" class="qtd-input" min="0" max="50" value="0" data-nome='PearBook Pro 13"' data-preco="3499" aria-label="Quantidade PearBook Pro">
-                  <button type="button" class="btn-qtd" data-delta="1" aria-label="Aumentar PearBook Pro">+</button>
+              <p class="desc">Corpo unibody, Intel Core i5, 4 GB RAM e logo iluminado.</p>
+              <div class="card-rodape">
+                <strong class="preco">R$ 3499,00</strong>
+                <div class="qtd-box">
+                  <button type="button" onclick="mudarQtd('qtd-book', -1)">-</button>
+                  <input type="number" id="qtd-book" min="0" value="0" oninput="atualizarResumo()">
+                  <button type="button" onclick="mudarQtd('qtd-book', 1)">+</button>
                 </div>
               </div>
-            </article>
+            </div>
 
-            <article class="produto-card" data-categoria="acessorios" data-busca="pearpod touch musica mp3 ipod">
+            <div class="card cat-acessorios">
               <img src="assets/img/pearpod-touch.jpg" alt="PearPod Touch">
               <h3>PearPod Touch (32 GB)</h3>
-              <p class="produto-desc">Suas músicas do PearTunes e jogos da App Pear no bolso.</p>
-              <div class="produto-rodape">
+              <p class="desc">Suas músicas do PearTunes e jogos da App Pear no bolso.</p>
+              <div class="card-rodape">
                 <strong class="preco">R$ 799,00</strong>
-                <div class="qtd-controle">
-                  <button type="button" class="btn-qtd" data-delta="-1" aria-label="Diminuir PearPod Touch">-</button>
-                  <input type="number" class="qtd-input" min="0" max="50" value="0" data-nome="PearPod Touch (32 GB)" data-preco="799" aria-label="Quantidade PearPod Touch">
-                  <button type="button" class="btn-qtd" data-delta="1" aria-label="Aumentar PearPod Touch">+</button>
+                <div class="qtd-box">
+                  <button type="button" onclick="mudarQtd('qtd-pod', -1)">-</button>
+                  <input type="number" id="qtd-pod" min="0" value="0" oninput="atualizarResumo()">
+                  <button type="button" onclick="mudarQtd('qtd-pod', 1)">+</button>
                 </div>
               </div>
-            </article>
+            </div>
 
-            <article class="produto-card" data-categoria="acessorios" data-busca="kit bumper pearpods fone carregador capinha">
+            <div class="card cat-acessorios">
               <img src="assets/img/pear-accessories.jpg" alt="Kit Bumper e PearPods">
               <h3>Kit Bumper &amp; PearPods</h3>
-              <p class="produto-desc">Capa protetora para PearPhone, fones estéreo e carregador USB.</p>
-              <div class="produto-rodape">
+              <p class="desc">Capa protetora para PearPhone, fones estéreo e carregador USB.</p>
+              <div class="card-rodape">
                 <strong class="preco">R$ 149,00</strong>
-                <div class="qtd-controle">
-                  <button type="button" class="btn-qtd" data-delta="-1" aria-label="Diminuir Kit Bumper">-</button>
-                  <input type="number" class="qtd-input" min="0" max="50" value="0" data-nome="Kit Bumper & PearPods" data-preco="149" aria-label="Quantidade Kit Bumper">
-                  <button type="button" class="btn-qtd" data-delta="1" aria-label="Aumentar Kit Bumper">+</button>
+                <div class="qtd-box">
+                  <button type="button" onclick="mudarQtd('qtd-kit', -1)">-</button>
+                  <input type="number" id="qtd-kit" min="0" value="0" oninput="atualizarResumo()">
+                  <button type="button" onclick="mudarQtd('qtd-kit', 1)">+</button>
                 </div>
               </div>
-            </article>
+            </div>
 
-            <p id="sem-resultados" class="sem-resultados" hidden>Nenhum produto encontrado para essa busca.</p>
+            <p id="sem-busca" class="sem-busca escondido">Nenhum produto encontrado para essa busca.</p>
           </div>
 
-          <!-- Painel Direito: Resumo, Cálculo e Pagamento -->
-          <aside class="resumo" aria-labelledby="titulo-resumo">
-            <h3 id="titulo-resumo">Resumo do Pedido</h3>
-            <div id="itens-resumo" class="itens-resumo">
+          <!-- resumo da compra -->
+          <div class="resumo">
+            <h3>Resumo do Pedido</h3>
+            <div id="lista-resumo" class="lista-resumo">
               <p class="vazio">Nenhum item selecionado ainda.</p>
             </div>
 
-            <p id="aviso-erro" class="aviso-erro" hidden role="alert"></p>
+            <p id="erro" class="erro escondido"></p>
 
-            <button type="button" id="btn-calcular" class="btn-aqua">Calcular Valor da Compra</button>
-            <button type="button" id="btn-limpar" class="btn-silver">Zerar Quantidades</button>
+            <button type="button" id="btn-calcular" class="btn-azul" onclick="calcularCompra()">Calcular Valor da Compra</button>
+            <button type="button" id="btn-limpar" class="btn-cinza" onclick="zerarTudo()">Zerar Quantidades</button>
 
-            <div id="area-calculo" class="area-calculo" hidden>
-              <div class="total-linha">
+            <div id="resultado" class="resultado escondido">
+              <div class="total-box">
                 <span>Valor Total da Compra:</span>
-                <strong id="valor-total">R$ 0,00</strong>
+                <strong id="total-bruto">R$ 0,00</strong>
               </div>
-              <p id="aviso-alterado" class="aviso-alterado" hidden>Quantidades alteradas. Clique em Calcular novamente.</p>
+              <p id="aviso-mudou" class="aviso-mudou escondido">Quantidades alteradas. Clique em Calcular novamente.</p>
 
-              <div class="pagamento-grupo">
-                <p class="pagamento-titulo">Forma de pagamento:</p>
-                <label class="radio-item">
-                  <input type="radio" name="pagamento" value="pix">
+              <div class="pagamento">
+                <p class="titulo-pag">Forma de pagamento:</p>
+                <label class="radio-op">
+                  <input type="radio" name="pagamento" value="pix" onchange="mostrarPagamento()">
                   Dinheiro / PIX (5% de desconto)
                 </label>
-                <label class="radio-item">
-                  <input type="radio" name="pagamento" value="cartao">
+                <label class="radio-op">
+                  <input type="radio" name="pagamento" value="cartao" onchange="mostrarPagamento()">
                   Cartão de Crédito (até 10x sem juros)
                 </label>
               </div>
 
-              <div id="box-pix" class="pagamento-resultado" hidden>
+              <div id="box-pix" class="pag-box escondido">
                 <p>Valor original: <span id="pix-bruto">R$ 0,00</span></p>
                 <p>Desconto (5%): <span id="pix-desconto">- R$ 0,00</span></p>
                 <p class="destaque">Total à vista: <strong id="pix-final">R$ 0,00</strong></p>
               </div>
 
-              <div id="box-cartao" class="pagamento-resultado" hidden>
-                <label for="select-parcelas">Número de parcelas (até 10x):</label>
-                <select id="select-parcelas">
+              <div id="box-cartao" class="pag-box escondido">
+                <label for="parcelas">Número de parcelas (até 10x):</label>
+                <select id="parcelas" onchange="mostrarPagamento()">
                   <option value="1">1x sem juros</option>
                   <option value="2">2x sem juros</option>
                   <option value="3">3x sem juros</option>
@@ -272,22 +268,22 @@
                 <p>Total no cartão: <span id="cartao-total">R$ 0,00</span></p>
               </div>
 
-              <button type="button" id="btn-confirmar" class="btn-aqua btn-confirmar" hidden>Finalizar Pedido</button>
-              <p id="msg-finalizado" class="msg-finalizado" hidden></p>
+              <button type="button" id="btn-finalizar" class="btn-azul btn-fim escondido" onclick="finalizarPedido()">Finalizar Pedido</button>
+              <p id="confirmacao" class="confirmacao escondido"></p>
             </div>
-          </aside>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Rodapé Global Clássico Apple 2011 -->
-  <footer id="rodape" class="container">
+  <!-- rodape -->
+  <footer id="rodape" class="caixa">
     <div class="breadcrumbs">
-      <a href="#hero">Pear</a> &rsaquo; <a href="#hero">PearPhone</a> &rsaquo; <span>PearStore Online</span>
+      <a href="#banner">Pear</a> &rsaquo; <a href="#banner">PearPhone</a> &rsaquo; <span>PearStore Online</span>
     </div>
-    <p>Compre na <a href="#pearstore">PearStore Online</a> (0800-PEAR-2011) ou em uma loja Pear autorizada.</p>
-    <p class="copyright">Copyright &copy; 2011 Pear Inc. Todos os direitos reservados. — IFB Campus Brasília • Programação Web 1</p>
+    <p>Compre na <a href="#loja">PearStore Online</a> (0800-PEAR-2011) ou em uma loja Pear autorizada.</p>
+    <p>Copyright &copy; 2011 Pear Inc. Todos os direitos reservados. — IFB Campus Brasília • Programação Web 1</p>
   </footer>
 
   <script src="js/app.js"></script>

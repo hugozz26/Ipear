@@ -1,263 +1,260 @@
-// Lógica da PearStore Online - Programação Web 1 (IFB)
+// Script da loja PearStore - 1o ano EMI (IFB)
 
-let totalCalculado = 0;
+var totalCompra = 0;
 
-function formatarReal(valor) {
-  return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+var produtos = [
+  { id: "qtd-xt", nome: "PearPhone XT (16 GB - Azul Clássico)", preco: 1799 },
+  { id: "qtd-gx", nome: "PearPhone GX (16 GB)", preco: 1399 },
+  { id: "qtd-pad", nome: "PearPad 2 (32 GB)", preco: 1699 },
+  { id: "qtd-book", nome: 'PearBook Pro 13"', preco: 3499 },
+  { id: "qtd-pod", nome: "PearPod Touch (32 GB)", preco: 799 },
+  { id: "qtd-kit", nome: "Kit Bumper & PearPods", preco: 149 }
+];
+
+function formatarValor(valor) {
+  return "R$ " + valor.toFixed(2).replace(".", ",");
 }
 
-const xtCor = document.getElementById("xt-cor");
-const xtCapacidade = document.getElementById("xt-capacidade");
-const xtPreco = document.getElementById("xt-preco");
-const qtdXt = document.getElementById("qtd-xt");
+function atualizarXT() {
+  var cor = document.getElementById("xt-cor").value;
+  var capSelect = document.getElementById("xt-cap");
+  var preco = Number(capSelect.value);
+  var tamanho = capSelect.options[capSelect.selectedIndex].text.split(" ")[0] + " GB";
 
-const inputsQtd = document.querySelectorAll(".qtd-input");
-const itensResumo = document.getElementById("itens-resumo");
-const avisoErro = document.getElementById("aviso-erro");
-const areaCalculo = document.getElementById("area-calculo");
-const valorTotalEl = document.getElementById("valor-total");
-const avisoAlterado = document.getElementById("aviso-alterado");
-
-const boxPix = document.getElementById("box-pix");
-const boxCartao = document.getElementById("box-cartao");
-const selectParcelas = document.getElementById("select-parcelas");
-const btnConfirmar = document.getElementById("btn-confirmar");
-const msgFinalizado = document.getElementById("msg-finalizado");
-
-function atualizarPearPhoneXT() {
-  const opcao = xtCapacidade.options[xtCapacidade.selectedIndex];
-  const preco = Number(xtCapacidade.value);
-
-  xtPreco.textContent = formatarReal(preco);
-  qtdXt.dataset.preco = String(preco);
-  qtdXt.dataset.nome = "PearPhone XT (" + opcao.dataset.gb + " - " + xtCor.value + ")";
+  produtos[0].preco = preco;
+  produtos[0].nome = "PearPhone XT (" + tamanho + " - " + cor + ")";
+  document.getElementById("xt-preco").innerText = formatarValor(preco);
 
   atualizarResumo();
-  marcarAlterado();
 }
 
-function lerQuantidade(input) {
-  const n = parseInt(input.value, 10);
-  if (isNaN(n) || n < 0) return 0;
-  return Math.min(50, n);
+function mudarQtd(idCampo, soma) {
+  var campo = document.getElementById(idCampo);
+  var qtd = Number(campo.value) + soma;
+
+  if (isNaN(qtd) || qtd < 0) qtd = 0;
+  if (qtd > 50) qtd = 50;
+
+  campo.value = qtd;
+  atualizarResumo();
 }
 
 function atualizarResumo() {
-  itensResumo.innerHTML = "";
-  let totalUnidades = 0;
+  var lista = document.getElementById("lista-resumo");
+  var html = "";
+  var temItem = false;
 
-  inputsQtd.forEach(function (input) {
-    const qtd = lerQuantidade(input);
+  for (var i = 0; i < produtos.length; i++) {
+    var campo = document.getElementById(produtos[i].id);
+    var qtd = parseInt(campo.value);
+    if (isNaN(qtd) || qtd < 0) qtd = 0;
+
     if (qtd > 0) {
-      totalUnidades += qtd;
-      const linha = document.createElement("div");
-      linha.className = "item-linha";
-
-      const nome = document.createElement("span");
-      nome.textContent = qtd + "x " + input.dataset.nome;
-
-      const subtotal = document.createElement("strong");
-      subtotal.textContent = formatarReal(qtd * Number(input.dataset.preco));
-
-      linha.appendChild(nome);
-      linha.appendChild(subtotal);
-      itensResumo.appendChild(linha);
+      temItem = true;
+      var sub = qtd * produtos[i].preco;
+      html += '<div class="item-linha"><span>' + qtd + "x " + produtos[i].nome + "</span><strong>" + formatarValor(sub) + "</strong></div>";
     }
-  });
-
-  if (totalUnidades === 0) {
-    const vazio = document.createElement("p");
-    vazio.className = "vazio";
-    vazio.textContent = "Nenhum item selecionado ainda.";
-    itensResumo.appendChild(vazio);
   }
-}
 
-function marcarAlterado() {
-  if (!areaCalculo.hidden) {
-    avisoAlterado.hidden = false;
-    msgFinalizado.hidden = true;
+  if (!temItem) {
+    html = '<p class="vazio">Nenhum item selecionado ainda.</p>';
+  }
+  lista.innerHTML = html;
+
+  document.getElementById("erro").classList.add("escondido");
+  if (!document.getElementById("resultado").classList.contains("escondido")) {
+    document.getElementById("aviso-mudou").classList.remove("escondido");
+    document.getElementById("confirmacao").classList.add("escondido");
   }
 }
 
 function calcularCompra() {
-  let soma = 0;
-  let unidades = 0;
+  var soma = 0;
+  var qtdTotal = 0;
 
-  inputsQtd.forEach(function (input) {
-    const qtd = lerQuantidade(input);
-    input.value = String(qtd);
-    soma += qtd * Number(input.dataset.preco);
-    unidades += qtd;
-  });
+  for (var i = 0; i < produtos.length; i++) {
+    var campo = document.getElementById(produtos[i].id);
+    var qtd = parseInt(campo.value);
+    if (isNaN(qtd) || qtd < 0) qtd = 0;
+    if (qtd > 50) qtd = 50;
+    campo.value = qtd;
 
-  if (unidades === 0) {
-    avisoErro.textContent = "Selecione pelo menos 1 produto antes de calcular.";
-    avisoErro.hidden = false;
-    areaCalculo.hidden = true;
-    totalCalculado = 0;
+    soma += qtd * produtos[i].preco;
+    qtdTotal += qtd;
+  }
+
+  var erro = document.getElementById("erro");
+  var resultado = document.getElementById("resultado");
+
+  if (qtdTotal == 0) {
+    erro.innerText = "Selecione pelo menos 1 produto antes de calcular.";
+    erro.classList.remove("escondido");
+    resultado.classList.add("escondido");
+    totalCompra = 0;
     return;
   }
 
-  avisoErro.hidden = true;
-  avisoAlterado.hidden = true;
-  msgFinalizado.hidden = true;
+  erro.classList.add("escondido");
+  document.getElementById("aviso-mudou").classList.add("escondido");
+  document.getElementById("confirmacao").classList.add("escondido");
 
-  totalCalculado = soma;
-  valorTotalEl.textContent = formatarReal(totalCalculado);
-  areaCalculo.hidden = false;
+  totalCompra = soma;
+  document.getElementById("total-bruto").innerText = formatarValor(totalCompra);
+  resultado.classList.remove("escondido");
 
-  atualizarPagamento();
+  mostrarPagamento();
 }
 
-function atualizarPagamento() {
-  const radio = document.querySelector('input[name="pagamento"]:checked');
-  msgFinalizado.hidden = true;
-  avisoErro.hidden = true;
+function mostrarPagamento() {
+  var opcoes = document.getElementsByName("pagamento");
+  var escolhida = "";
 
-  if (!radio) {
-    boxPix.hidden = true;
-    boxCartao.hidden = true;
-    btnConfirmar.hidden = true;
+  for (var i = 0; i < opcoes.length; i++) {
+    if (opcoes[i].checked) {
+      escolhida = opcoes[i].value;
+    }
+  }
+
+  var boxPix = document.getElementById("box-pix");
+  var boxCartao = document.getElementById("box-cartao");
+  var btnFinalizar = document.getElementById("btn-finalizar");
+  document.getElementById("confirmacao").classList.add("escondido");
+  document.getElementById("erro").classList.add("escondido");
+
+  if (escolhida == "") {
+    boxPix.classList.add("escondido");
+    boxCartao.classList.add("escondido");
+    btnFinalizar.classList.add("escondido");
     return;
   }
 
-  if (radio.value === "pix") {
-    const desconto = Math.round(totalCalculado * 0.05 * 100) / 100;
-    const totalFinal = totalCalculado - desconto;
+  if (escolhida == "pix") {
+    var desconto = totalCompra * 0.05;
+    var finalPix = totalCompra - desconto;
 
-    document.getElementById("pix-bruto").textContent = formatarReal(totalCalculado);
-    document.getElementById("pix-desconto").textContent = "- " + formatarReal(desconto);
-    document.getElementById("pix-final").textContent = formatarReal(totalFinal);
+    document.getElementById("pix-bruto").innerText = formatarValor(totalCompra);
+    document.getElementById("pix-desconto").innerText = "- " + formatarValor(desconto);
+    document.getElementById("pix-final").innerText = formatarValor(finalPix);
 
-    boxPix.hidden = false;
-    boxCartao.hidden = true;
+    boxPix.classList.remove("escondido");
+    boxCartao.classList.add("escondido");
   } else {
-    const parcelas = Number(selectParcelas.value);
-    const valorParcela = totalCalculado / parcelas;
+    var parcelas = Number(document.getElementById("parcelas").value);
+    var valorParcela = totalCompra / parcelas;
 
-    document.getElementById("cartao-parcela").textContent = parcelas + "x de " + formatarReal(valorParcela);
-    document.getElementById("cartao-total").textContent = formatarReal(totalCalculado);
+    document.getElementById("cartao-parcela").innerText = parcelas + "x de " + formatarValor(valorParcela);
+    document.getElementById("cartao-total").innerText = formatarValor(totalCompra);
 
-    boxCartao.hidden = false;
-    boxPix.hidden = true;
+    boxCartao.classList.remove("escondido");
+    boxPix.classList.add("escondido");
   }
-  btnConfirmar.hidden = false;
+
+  btnFinalizar.classList.remove("escondido");
 }
 
 function finalizarPedido() {
-  if (!avisoAlterado.hidden) {
-    avisoErro.textContent = "As quantidades mudaram. Clique em Calcular Valor da Compra primeiro.";
-    avisoErro.hidden = false;
+  var avisoMudou = document.getElementById("aviso-mudou");
+  var erro = document.getElementById("erro");
+
+  if (!avisoMudou.classList.contains("escondido")) {
+    erro.innerText = "As quantidades mudaram. Clique em Calcular Valor da Compra primeiro.";
+    erro.classList.remove("escondido");
     return;
   }
 
-  const radio = document.querySelector('input[name="pagamento"]:checked');
-  if (!radio) return;
-
-  if (radio.value === "pix") {
-    const desconto = Math.round(totalCalculado * 0.05 * 100) / 100;
-    msgFinalizado.textContent = "Pedido confirmado! Pagamento em Dinheiro/PIX com 5% de desconto: " + formatarReal(totalCalculado - desconto) + ".";
-  } else {
-    const parcelas = Number(selectParcelas.value);
-    msgFinalizado.textContent = "Pedido confirmado! Pagamento no Cartão em " + parcelas + "x de " + formatarReal(totalCalculado / parcelas) + ".";
+  var opcoes = document.getElementsByName("pagamento");
+  var escolhida = "";
+  for (var i = 0; i < opcoes.length; i++) {
+    if (opcoes[i].checked) escolhida = opcoes[i].value;
   }
-  msgFinalizado.hidden = false;
+  if (escolhida == "") return;
+
+  var msg = document.getElementById("confirmacao");
+  if (escolhida == "pix") {
+    msg.innerText = "Pedido confirmado! Pagamento em Dinheiro/PIX com 5% de desconto: " + formatarValor(totalCompra * 0.95) + ".";
+  } else {
+    var parcelas = Number(document.getElementById("parcelas").value);
+    msg.innerText = "Pedido confirmado! Pagamento no Cartão em " + parcelas + "x de " + formatarValor(totalCompra / parcelas) + ".";
+  }
+  msg.classList.remove("escondido");
 }
 
-function zerarPedido() {
-  inputsQtd.forEach(function (input) { input.value = "0"; });
-  document.querySelectorAll('input[name="pagamento"]').forEach(function (r) { r.checked = false; });
-  totalCalculado = 0;
-  avisoErro.hidden = true;
-  avisoAlterado.hidden = true;
-  areaCalculo.hidden = true;
-  boxPix.hidden = true;
-  boxCartao.hidden = true;
-  btnConfirmar.hidden = true;
-  msgFinalizado.hidden = true;
+function zerarTudo() {
+  for (var i = 0; i < produtos.length; i++) {
+    document.getElementById(produtos[i].id).value = 0;
+  }
+
+  var opcoes = document.getElementsByName("pagamento");
+  for (var j = 0; j < opcoes.length; j++) {
+    opcoes[j].checked = false;
+  }
+
+  totalCompra = 0;
+  document.getElementById("erro").classList.add("escondido");
+  document.getElementById("aviso-mudou").classList.add("escondido");
+  document.getElementById("resultado").classList.add("escondido");
+  document.getElementById("box-pix").classList.add("escondido");
+  document.getElementById("box-cartao").classList.add("escondido");
+  document.getElementById("btn-finalizar").classList.add("escondido");
+  document.getElementById("confirmacao").classList.add("escondido");
   atualizarResumo();
 }
 
-function filtrarProdutos(categoria, texto) {
-  const termo = (texto || "").trim().toLowerCase();
-  let visiveis = 0;
+function filtrar(categoria) {
+  document.getElementById("busca").value = "";
 
-  document.querySelectorAll(".filtro-btn").forEach(function (btn) {
-    btn.classList.toggle("ativo", btn.dataset.categoria === categoria);
-  });
+  var botoes = document.getElementsByClassName("btn-filtro");
+  for (var i = 0; i < botoes.length; i++) {
+    botoes[i].classList.remove("ativo");
+  }
+  var ativo = document.getElementById("f-" + categoria);
+  if (ativo) ativo.classList.add("ativo");
 
-  document.querySelectorAll(".produto-card").forEach(function (card) {
-    const bateCategoria = categoria === "todos" || card.dataset.categoria === categoria;
-    const textoCard = (card.textContent + " " + card.dataset.busca).toLowerCase();
-    const mostrar = bateCategoria && (termo === "" || textoCard.includes(termo));
-    card.hidden = !mostrar;
-    if (mostrar) visiveis++;
-  });
-
-  document.getElementById("sem-resultados").hidden = visiveis > 0;
+  var cards = document.getElementsByClassName("card");
+  for (var j = 0; j < cards.length; j++) {
+    if (categoria == "todos" || cards[j].classList.contains("cat-" + categoria)) {
+      cards[j].classList.remove("escondido");
+    } else {
+      cards[j].classList.add("escondido");
+    }
+  }
+  document.getElementById("sem-busca").classList.add("escondido");
 }
 
-// Eventos
-xtCor.addEventListener("change", atualizarPearPhoneXT);
-xtCapacidade.addEventListener("change", atualizarPearPhoneXT);
+function buscarProduto() {
+  var texto = document.getElementById("busca").value.toLowerCase().trim();
+  var cards = document.getElementsByClassName("card");
+  var achou = 0;
 
-document.querySelectorAll(".btn-qtd").forEach(function (btn) {
-  btn.addEventListener("click", function () {
-    const input = btn.parentElement.querySelector(".qtd-input");
-    input.value = String(Math.min(50, Math.max(0, lerQuantidade(input) + Number(btn.dataset.delta))));
-    avisoErro.hidden = true;
-    atualizarResumo();
-    marcarAlterado();
-  });
-});
-
-inputsQtd.forEach(function (input) {
-  input.addEventListener("input", function () {
-    avisoErro.hidden = true;
-    atualizarResumo();
-    marcarAlterado();
-  });
-  input.addEventListener("blur", function () {
-    input.value = String(lerQuantidade(input));
-  });
-});
-
-document.getElementById("btn-calcular").addEventListener("click", calcularCompra);
-document.getElementById("btn-limpar").addEventListener("click", zerarPedido);
-document.getElementById("btn-confirmar").addEventListener("click", finalizarPedido);
-selectParcelas.addEventListener("change", atualizarPagamento);
-
-document.querySelectorAll('input[name="pagamento"]').forEach(function (radio) {
-  radio.addEventListener("change", atualizarPagamento);
-});
-
-document.querySelectorAll(".filtro-btn").forEach(function (btn) {
-  btn.addEventListener("click", function () {
-    filtrarProdutos(btn.dataset.categoria, document.getElementById("campo-busca").value);
-  });
-});
-
-document.querySelectorAll("[data-filtro]").forEach(function (link) {
-  link.addEventListener("click", function () {
-    filtrarProdutos(link.dataset.filtro, "");
-    document.getElementById("campo-busca").value = "";
-  });
-});
-
-document.getElementById("campo-busca").addEventListener("input", function (e) {
-  filtrarProdutos("todos", e.target.value);
-});
-
-document.getElementById("campo-busca").addEventListener("keydown", function (e) {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    document.getElementById("pearstore").scrollIntoView({ behavior: "smooth" });
+  var botoes = document.getElementsByClassName("btn-filtro");
+  for (var i = 0; i < botoes.length; i++) {
+    botoes[i].classList.remove("ativo");
   }
-});
+  document.getElementById("f-todos").classList.add("ativo");
 
-document.getElementById("btn-specs").addEventListener("click", function (e) {
-  e.preventDefault();
-  const box = document.getElementById("specs-box");
-  box.hidden = !box.hidden;
-});
+  for (var j = 0; j < cards.length; j++) {
+    var conteudo = cards[j].innerText.toLowerCase();
+    if (texto == "" || conteudo.indexOf(texto) != -1) {
+      cards[j].classList.remove("escondido");
+      achou++;
+    } else {
+      cards[j].classList.add("escondido");
+    }
+  }
+
+  var semBusca = document.getElementById("sem-busca");
+  if (achou == 0) {
+    semBusca.classList.remove("escondido");
+  } else {
+    semBusca.classList.add("escondido");
+  }
+}
+
+function mostrarSpecs() {
+  var specs = document.getElementById("specs");
+  if (specs.classList.contains("escondido")) {
+    specs.classList.remove("escondido");
+  } else {
+    specs.classList.add("escondido");
+  }
+}
